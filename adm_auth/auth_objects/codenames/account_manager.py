@@ -1,0 +1,18 @@
+account_manager = [
+    "auth.add_user",
+    "auth.change_permission",
+    "auth.change_user",
+    "auth.delete_permission",
+    "auth.delete_user",
+    "auth.view_group",
+    "auth.view_permission",
+    "auth.view_user",
+    "adm_auth.add_userprofile",
+    "adm_auth.change_userprofile",
+    "adm_auth.delete_userprofile",
+    "adm_auth.view_userprofile",
+    "adm_auth.add_role",
+    "adm_auth.change_role",
+    "adm_auth.delete_role",
+    "adm_auth.view_role",
+]

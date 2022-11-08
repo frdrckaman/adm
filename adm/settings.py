@@ -9,21 +9,39 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+ENV_DIR = str(Path(os.path.join(BASE_DIR, ".env")))
+
+env = environ.Env(
+    DJANGO_DEBUG=(bool, False),
+    DEBUG_TOOLBAR=(bool, False),
+    DATABASE_SQLITE_ENABLED=(bool, False),
+    DJANGO_EMAIL_ENABLED=(bool, False),
+    NIMR_PAGINATION=(int, 10)
+)
+
+environ.Env.read_env(ENV_DIR)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-blq%0!of3+$0i%tz%s_qo2xp%q*g^9yp(z@622cx0vw*-6ge%t'
+SECRET_KEY = env.str("DJANGO_SECRET_KEY")
+
+APP_NAME = env.str("DJANGO_APP_NAME")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DJANGO_DEBUG")
+
+DEBUG_TOOLBAR = env("DEBUG_TOOLBAR")
+
+LOGIN_REDIRECT_URL = env.str("DJANGO_LOGIN_REDIRECT_URL")
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +55,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'adm_auth.apps.AppConfig',
+    'adm_dashboard.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +125,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
+ADM = env.str("ADM")
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -111,6 +134,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+SITE_ID = 1
 
 
 # Static files (CSS, JavaScript, Images)

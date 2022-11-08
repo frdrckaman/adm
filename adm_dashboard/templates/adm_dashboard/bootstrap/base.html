@@ -1,3 +1,4 @@
+{% load edcs_menu %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -65,12 +66,13 @@
                 <a class="logo" href="{% url 'adm_dashboard:home' %}">
 {#                    <img src="{% static 'img/logo.png' %}" alt="edcs-logo" title="edcs"/>#}
                     <p>
-                        <span style="font-weight: bold;color: #ffffff; font-size: x-large">ADM </span> &nbsp;&nbsp;
+                        <span style="font-weight: bold;color: #ffffff; font-size: x-large">
+                            ADM </span> &nbsp;&nbsp;
                     </p>
                 </a>
                 <!------------------------------- end system logo ------------------------------------------->
                 <!------------------------------- start template theme settings ------------------------------------------->
-{#                {% theme_settings %}#}
+
                 <!------------------------------- end template theme settings ------------------------------------------->
             </div>
         {% endblock head %}
@@ -90,7 +92,8 @@
                         </div>
                         <ul class="control">
                             <li><span class="glyphicon glyphicon-comment"></span> <a href="#">Messages</a> <a href="#" class="caption red">0</a></li>
-                            <li><span class="glyphicon glyphicon-cog"></span> <a href="#">Administration</a></li>
+                            <li><span class="glyphicon glyphicon-cog"></span> <a
+                                    href="/admin">Administration</a></li>
                             <li><span class="glyphicon glyphicon-share-alt"></span> <a href="{% url 'logout' %}">Logout</a></li>
                         </ul>
                         <div class="info">
@@ -100,11 +103,11 @@
                 {% endblock user-info-menu %}
                 <!------------------------- End of top menu section for user info ------------------------------------------------>
                 {% block main-menu %}
-{#                    {% main_menu %}#}
+                    {% main_menu %}
                 {% endblock main-menu %}
                 {% block bottom-summary %}
                     <!------------------------------------- bottom summary ------------------------------>
-{#                    {% bottom_summary %}#}
+                    {% bottom_summary %}
                     <!-------------------------------- end bottom summary ------------------------->
                 {% endblock bottom-summary %}
             </div>

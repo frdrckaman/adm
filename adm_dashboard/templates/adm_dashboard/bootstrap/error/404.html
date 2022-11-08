@@ -1,0 +1,9 @@
+{% extends 'adm_dashboard/bootstrap/base.html' %}
+
+{% block body-content %}
+    <div class="errorPage">        
+        <p class="name">404</p>
+        <p class="description">Not Found</p>        
+        <p><button class="btn btn-danger" onClick="document.location.href = '{% url "adm_dashboard:home" %}';">Back to main</button> <button class="btn btn-warning" onClick="history.back();">Previous page</button></p>
+    </div>
+{% endblock %}

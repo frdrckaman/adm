@@ -10,12 +10,14 @@ class UserProfileInline(admin.StackedInline):
     model = UserProfile
     can_delete = False
     verbose_name_plural = "User profile"
+    filter_horizontal = ("sites", "roles")
 
     form = UserProfileForm
 
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
+    filter_horizontal = ("sites", )
 
     list_display = (
         "user",
